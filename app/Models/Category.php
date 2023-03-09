@@ -9,6 +9,14 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'name'
+    ];
+
+    protected $casts = [
+        'name' => 'string'
+    ];
+
     public function lots()
     {
         return $this->hasMany(Lot::class);
