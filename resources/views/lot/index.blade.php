@@ -6,6 +6,17 @@
 
 @section('content')
     <a class="btn btn-info mb-3" href="{{route('lot.create')}}">Add lot</a>
+
+    <form action="{{route('lot.index')}}" method="GET">
+        <select name="category_filter">
+            <option selected disabled>Choose category</option>
+            @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+        <button type="submit" class="btn btn-warning">Filter</button>
+    </form>
+
     <table class="table">
         <thead>
         <tr>

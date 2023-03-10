@@ -12,9 +12,15 @@ class LotController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('lot.index', ['lots' => Lot::all()]);
+        $lot = Lot::all();
+
+        if(filled($request->category_filter)){
+            $lot = Lot::query()->categoryFilter($request->category_filter)->get();
+        }
+
+        return view('lot.index', ['lots' => $lot, 'categories' => Category::all()]);
     }
 
     /**

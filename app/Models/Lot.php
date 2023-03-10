@@ -25,4 +25,11 @@ class Lot extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeCategoryFilter($query, $param)
+    {
+        return $query->whereHas('category', function ($q) use ($param) {
+            $q->where('id', $param);
+        });
+    }
 }
